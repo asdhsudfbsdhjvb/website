@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlantID - Identify Plants with AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+    <!-- Login/Register Modal -->
+    <div id="auth-modal" class="auth-modal">
+        <div class="auth-container">
+            <div class="auth-form">
+                <div class="auth-header">
+                    <img src="images/logo/pland-logo.png" alt="PlantID Logo" class="logo">
+                    <h2>Welcome to PlantID</h2>
+                </div>
+                <form class="register-form">
+                    <input type="text" placeholder="Full Name" required/>
+                    <input type="email" placeholder="Email Address" required/>
+                    <input type="password" placeholder="Password" required/>
+                    <button type="submit">Create Account</button>
+                    <p class="message">Already have an account? <a href="#" id="show-login">Sign In</a></p>
+                </form>
+                <form class="login-form">
+                    <input type="email" placeholder="Email Address" required/>
+                    <input type="password" placeholder="Password" required/>
+                    <button type="submit">Sign In</button>
+                    <p class="message">Don't have an account? <a href="#" id="show-register">Create Account</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="main-app" class="main-app hidden">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <img src="images/logo/pland-logo.png" alt="PlantID Logo" class="nav-logo">
+                <div class="nav-links">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#identify" class="nav-link">Identify</a>
+                    <a href="#gallery" class="nav-link">My Plants</a>
+                </div>
+                <div class="user-menu">
+                    <span id="user-email" class="user-email"></span>
+                    <button id="logout-btn" class="logout-btn">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1>Discover the World of Plants</h1>
+                <p>Upload a photo and let our AI identify any plant instantly</p>
+                <button id="start-identify" class="cta-button">Start Identifying</button>
+            </div>
+        </section>
+
+        <!-- Plant Identification Section -->
+        <section id="identify" class="identify-section">
+            <div class="identify-container">
+                <div class="upload-area" id="upload-area">
+                    <div class="upload-content">
+                        <div class="upload-icon">📸</div>
+                        <h3>Upload Plant Photo</h3>
+                        <p>Drag & drop or click to select an image</p>
+                        <input type="file" id="image-input" accept="image/*" hidden>
+                        <button class="upload-btn" onclick="document.getElementById('image-input').click()">Choose File</button>
+                    </div>
+                </div>
+                
+                <div class="image-preview" id="image-preview" style="display: none;">
+                    <img id="preview-img" src="" alt="Plant Preview">
+                    <div class="preview-actions">
+                        <button id="identify-btn" class="identify-btn">Identify Plant</button>
+                        <button id="remove-image" class="remove-btn">Remove</button>
+                    </div>
+                </div>
+
+                <div class="results-container" id="results-container" style="display: none;">
+                    <h3>Identification Results</h3>
+                    <div class="loading" id="loading" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>Analyzing your plant...</p>
+                    </div>
+                    <div class="results" id="results"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery-section">
+            <div class="gallery-container">
+                <h2>My Plant Collection</h2>
+                <div class="plant-grid" id="plant-grid">
+                    <div class="empty-state">
+                        <p>No plants identified yet. Start by uploading a photo!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
